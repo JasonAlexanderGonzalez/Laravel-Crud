@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Tenants extends Model
+{
+    use HasFactory;
+    //esto significa que guarde todos los campos que indiquemos
+    //en el archivo de la migracion, y algunos estaran vacios
+    //y lo hara como un arreglo
+    protected $guarded = [];
+    public $timestamps = false;
+
+    //Definimos la relacion de usuarios con tenant
+    public function user(){
+        return $this->hasOne(User::class);
+    }
+//Definimos la relacion de categorias con tenant
+    public function categorias(){
+        return $this->hasMany(Categorias::class);
+    }
+
+}
